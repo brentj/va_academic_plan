@@ -1,0 +1,19 @@
+{
+~[tlist_sql;
+		SELECT
+			c.course_number,
+			c.course_name,
+			LEAD (
+				CASE WHEN c.course_number IS NOT NULL THEN CHR(44) ELSE NULL END
+			) OVER (
+				ORDER BY c.course_number ASC
+			)
+		FROM courses c
+		WHERE
+	            c.course_number = '~[gpv:courseNumber]';]
+		"courseInfo": {
+			"courseNumber": "~(course_number)",
+			"courseName": "~(course_name)"
+		}~(comma)
+	[/tlist_sql]
+}

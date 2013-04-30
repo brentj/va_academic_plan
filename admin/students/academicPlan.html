@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html>
+<!-- start right frame -->
+<head>
+	<title>Academic Plan</title>
+	<link href="/images/css/screen.css" rel="stylesheet" media="screen">
+	<link href="/images/css/print.css" rel="stylesheet" media="print">
+	<style>
+		td.bold {
+			width: 15%;
+		},
+		
+		td.tablePosCourseCell {
+			width: 14%;
+		}
+		div#pos_Course_Add {
+			width: 420px;
+			height: 250px;
+		}
+		.ui-autocomplete {
+			width: 400px;
+		}
+	</style>
+</head>
+
+<body>
+
+<form action="/admin/changesrecorded.white.html" method="POST">
+	~[wc:admin_header_frame_css]<!-- breadcrumb start --><a href="/admin/home.html" target="_top">~[text:psx.html.admin_students.misc.start_page]</a> &gt; <a href="home.html?selectstudent=nosearch" target="_top">~[text:psx.html.admin_students.misc.student_selection]</a> &gt; Academic Plan<!-- breadcrumb end -->~[wc:admin_navigation_frame_css]
+
+	~[wc:title_student_begin_css]Academic Plan~[wc:title_student_end_css]
+
+	<!-- start of content and bounding box -->
+	<div class="box-round">
+		<table>
+			<tr class="headerrow">
+				<td colspan="2">Academic Plan Overview</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Initiation Date:</td>
+				<td><input type="text" name="[01]wps_ap_initiation_date" value="" class="psDateWidget" id="apInitiationdate"></input></td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Expected Graduation Year</td>
+				<td><input type="text" name="[01]graduation_year" value=""></input></td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Review Dates:</td>
+				<td>
+					<label for="apReviewDate1">Before 9th:</label><br />
+					<input type="text" name="[01]wps_ap_review_date_1" value="" class="psDateWidget" id="apReviewDate1"></input><br />
+					<label for="apReviewDate2">Before 11th:</label><br />
+					<input type="text" name="[01]wps_ap_review_date_2" value="" class="psDateWidget" id="apReviewDate2"></input>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Career Goal:</td>
+				<td><textarea type="text" name="[01]wps_ap_career_goal" value="" id="apCareerGoal"></textarea></td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Career Cluster:</td>
+				<td>
+					<select name="[01]VA_CTE_Career_Family_Code" id="cteCareerFamilyCode">
+						<option value="">Select...</option>
+						<option value="1">Agriculture, Food and Natural Resources</option>
+						<option value="2">Architecture and Construction</option>
+						<option value="3">Arts, Audio-Video Technology and Communications</option>
+						<option value="4">Business Management and Administration</option>
+						<option value="5">Education and Training</option>
+						<option value="6">Finance</option>
+						<option value="7">Government and Public Administration</option>
+						<option value="8">Health Science</option>
+						<option value="9">Hospitality and Tourism</option>
+						<option value="10">Human Services</option>
+						<option value="11">Information Technology</option>
+						<option value="12">Law, Public Safety, Corrections and Security</option>
+						<option value="13">Manufacturing</option>
+						<option value="14">Marketing</option>
+						<option value="15">Science, Technology, Engineering and Mathematics</option>
+						<option value="16">Transportation, Distribution and Logistics</option>
+					</select><br />
+					<font style="font-weight: bold; color: red;">This value effects state reporting!</font>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Career Pathway</td>
+				<td>
+					<select id="apCareerPathwayDisplay">
+						<option value=""></option>
+					</select>
+					<input type="hidden" name="[01]wps_ap_career_pathway" id="apCareerPathwayValue" value=""></input>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Occupation of Interest</td>
+				<td><textarea id="apOccupationOfInterest" name="[01]wps_ap_occupation_of_interest" value=""></textarea></td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Diploma Goal</td>
+				<td>
+					<select name="[01]wps_ap_diploma_goal" id="apDiplomaGoal" name="[01]wps_ap_diploma_goal">
+						<option value="">Select...</option>
+						<option value="standard">Standard</option>
+						<option value="advanced">Advanced</option>
+						<option value="standard technical">Standard technical</option>
+						<option value="advanced technical">Advanced Technical</option>
+						<option value="other">Other</option>
+					</select>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Diploma Recognition Goals:</td>
+				<td>
+					<input type="checkbox" name="[01]wps_ap_early_college_scholar" value="" id="apEarlyCollegeScholar"></input>
+					<label for="apEarlyCollegeScholar">Early College Scholar</label><br />
+					<input type="checkbox" name="[01]wps_ap_commonwealth_scholar" value="" id="apCommonwealthScholar"></input>
+					<label for="apCommonwealthScholar">Commonwealth Scholar</label><br /><br />
+					<p class="bold">Diploma Seals</p>
+					<input type="checkbox" id="dsGovernorsSeal"></input>
+					<label for="dsGovernorsSeal">Governor's Seal</label><br />
+					<input type="checkbox" id="dsBoardOfEducationSeal"></input>
+					<label for="dsBoardOfEducationSeal">Board of Education Seal</label><br />
+					<input type="checkbox" id="dsBoardOfEducationCareerAndTechnicalEducationSeal"></input>
+					<label for="dsBoardOfEducationCareerAndTechnicalEducationSeal">Board of Education Career and Technical Education Seal</label><br />
+					<input type="checkbox" id="dsBoardOfEducationAdvancedMathematicsAndTechnology"></input>
+					<label for="dsBoardOfEducationAdvancedMathematicsAndTechnology">Board of Education Advanced Mathematics and Technology</label><br />
+					<input type="checkbox" id="dsBoardOfEducationSealForExcellenceInCivicsEducation"></input>
+					<label for="dsBoardOfEducationSealForExcellenceInCivicsEducation">Board of Education Seal for Excellence in Civics Education</label>
+					<input type="hidden" id="apDiplomaSeal" name="[01]wps_ap_diploma_seal_code" value=""></input>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Post Secondary Goals</td>
+				<td>
+					<label for="apCollege">College/University:</label><br />
+					<select name="[01]wps_ap_college" id="apCollege">
+						<option value="">Select...</option>
+						<option value="none">None</option>
+						<option value="undecided">Undecided</option>
+						<option value="trade school">Trade School</option>
+						<option value="2">2 Year College/University</option>
+						<option value="4">4 Year College/University</option>
+					</select><br />
+					<label for="apMilitary">Military:</label><br />
+					<select name="[01]wps_ap_military" id="apMilitary">
+						<option value="">Select...</option>
+						<option value="none">None</option>
+						<option value="undecided">Undecided</option>
+						<option value="army">Army</option>
+						<option value="air force">Air Force</option>
+						<option value="coast guard">Coast Guard</option>
+						<option value="marine corps">Marine Corps</option>
+						<option value="navy">Navy</option>
+					</select>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Test Goals:</td>
+				<td>
+					<input type="text" id="satGoal" name="[01]wps_ap_sat_goal"></input>&nbsp;<label for="satGoal">SAT</label><br />
+					<input type="text" id="actGoal" name="[01]wps_ap_act_goal"></input>&nbsp;<label for="actGoal">ACT</label>
+				</td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Career Assessment Information:</td>
+				<td><textarea id="apCareerAssessment" name="[01]wps_ap_career_assessment" value=""></textarea></td>
+			</tr>
+			<tr class="~[evenoddrow]">
+				<td class="bold">Industry Certifications:</td>
+				<td><textarea id="apIndustryCertifications" name="[01]wps_ap_industry_certifications" value=""></textarea></td>
+			</tr>
+		</table>
+		<div id="programOfStudy">
+			<table class="grid">
+				<thead>
+					<tr class="headerrow">
+						<th>Subject/Requirement</th>
+						<th>7</th>
+						<th>8</th>
+						<th>9</th>
+						<th>10</th> 
+						<th>11</th>
+						<th>12</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="~[evenoddrow]">
+						<td class="bold">English</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_7_AddCourse_Button">Add</a><br />
+							<div id="pos_English_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_8_AddCourse_Button">Add</a><br />
+							<div id="pos_English_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_9_AddCourse_Button">Add</a><br />
+							<div id="pos_English_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_10_AddCourse_Button">Add</a><br />
+							<div id="pos_English_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_11_AddCourse_Button">Add</a><br />
+							<div id="pos_English_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_English_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_English_12_AddCourse_Button">Add</a><br />
+							<div id="pos_English_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Mathematics</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_7_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_8_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_9_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_10_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_11_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Math_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Math_12_AddCourse_Button">Add</a><br />
+							<div id="pos_Math_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Science</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_7_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_8_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_9_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_10_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_11_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Science_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Science_12_AddCourse_Button">Add</a><br />
+							<div id="pos_Science_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">History and Social Sciences</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_7_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_8_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_9_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_10_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_11_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_SocialStudies_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_SocialStudies_12_AddCourse_Button">Add</a><br />
+							<div id="pos_SocialStudies_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Health & PE</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_7_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_8_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_9_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_10_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_11_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Health_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Health_12_AddCourse_Button">Add</a><br />
+							<div id="pos_Health_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Fine Arts</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_7_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_8_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_9_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_10_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_11_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_FineArts_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_FineArts_12_AddCourse_Button">Add</a><br />
+							<div id="pos_FineArts_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Career and Tech Education</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_7_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_8_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_9_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_10_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_11_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_CTE_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_CTE_12_AddCourse_Button">Add</a><br />
+							<div id="pos_CTE_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Foreign Language</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_7_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_8_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_9_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_10_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_11_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_ForeignLanguage_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_ForeignLanguage_12_AddCourse_Button">Add</a><br />
+							<div id="pos_ForeignLanguage_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Economics and Personal Finance</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_7_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_8_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_9_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_10_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_11_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Economics_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Economics_12_AddCourse_Button">Add</a><br />
+							<div id="pos_Economics_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Electives</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_7_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_7_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_7_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_8_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_8_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_8_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_9_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_9_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_9_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_10_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_10_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_10_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_11_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_11_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_11_Display"></div>
+						</td>
+						<td class="tablePosCourseCell">
+							<div id="pos_Elective_12_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_Elective_12_AddCourse_Button">Add</a><br />
+							<div id="pos_Elective_12_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Student Selected Test</td>
+						<td colspan="6">
+							<div id="pos_StudentSelectedTest_1_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_StudentSelectedTest_1_AddCourse_Button">Add</a></div>
+							<div id="pos_StudentSelectedTest_1_Display"></div>
+						</td>
+					</tr>
+					<tr class="~[evenoddrow]">
+						<td class="bold">Online Course</td>
+						<td colspan="6">
+							<div id="pos_OnlineCourse_1_AddCourse" class="center"><a class="dialogDivM" title="Search for a Course" href="#div_PosCourseSearch" id="pos_OnlineCourse_1_AddCourse_Button">Add</a><br />
+							<div id="pos_OnlineCourse_1_Display"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<label for="apComments">Counselor's Comments:</label><br />
+		<textarea id="apComments" name="[01]wps_ap_comments" rows="5" cols="140" value=""></textarea>
+		<input type="text" id="apProgramOfStudy" name="[01]wps_ap_ProgramOfStudy" value=''></input>
+		<div class="button-row"><input type="hidden" name="ac" value="prim">~[submitbutton]</div>
+		<div id="div_PosCourseSearch" class="hidden">
+			<label for="posCourseSearch">Search by course number or name:</label><br />
+			<input type="text" id="posCourseSearch"></input><br />
+			<div id="pos_Course_Add">
+				<!-- divs for adding courses will go here! -->
+			</div>
+			<a href="#programOfStudy" id="addCourses">Add these courses.</a>
+		</div>
+		<a id="testRefresh" href="#">TestME!</a
+	</div>
+	<br>
+<!-- end of content of bounding box -->
+
+~[wc:admin_footer_frame_css]
+</form>
+
+</body>
+~[wc:commonscripts]
+<script type="text/javascript">
+	
+	//Lets init some variables!
+	var careerPaths = {
+		"1": {
+			"aggribusiness systems": "Aggribusiness Systems",
+			"animal systems": "Animal Systems",
+			"food products and processing systems": "Food Products and Processing Systems",
+			"natural resources systems": "Natural Resources Systems",
+			"plant systems": "Plant Systems",
+			"power structural and technical systems": "Power, Structural, and Technical Systems"
+		},
+		"2": {
+			"construction": "Construction",
+			"design pre-construction": "Design/Pre-Construction",
+			"maintenance and operations": "Maintenance and Operations"
+		},
+		"3": {
+			"audio and video technology and film": "Audio and Video Technology and Film",
+			"journalism and broadcasting": "Journalism and Broadcasting",
+			"performing arts": "Performing Arts",
+			"printing technology": "Printing Technology",
+			"telecommunications": "Telecommunications",
+			"visual arts": "Visual Arts"
+		},
+		"4": {
+			"administrative support": "Administrative Support",
+			"business information management": "Business Information Management",
+			"general management": "General Management",
+			"operations management": "Operations Management"
+		},
+		"5": {
+			"administration and administrative support": "Administration and Administrative Support",
+			"professional support services": "Professional Support Services",
+			"teaching and training": "Teaching and Training"
+		},
+		"6": {
+			"accounting": "Accounting",
+			"banking services": "Banking Services",
+			"business finance": "Business Finance",
+			"insurance": "Insurance",
+			"securities and investments": "Securities and Investments"
+		},
+		"7": {
+			"foreign service": "Foreign Service",
+			"governance": "Governance",
+			"national security": "National Security",
+			"planning": "Planning",
+			"public management and administration": "Public Management and Administration",
+			"regulation": "Regulation",
+			"revenue and taxation": "Revenue and Taxation"
+		},
+		"8": {
+			"biotechnology research and development": "Biotechnology Research and Development",
+			"diagnostics services": "Diagnostic Services",
+			"health infomatics": "Health Infomatics",
+			"support services": "Support Services",
+			"therapeutic services": "Therapeutic Services",
+		},
+		"9": {
+			"lodging": "Lodging",
+			"recreation amusements and attractions": "Recreation, Amusements and Attractions",
+			"restaurants and food and beverage services": "Restaurants and Food and Beverage Services",
+			"travel and tourism": "Travel and Tourism"
+		},
+		"10": {
+			"consumer services": "Consumer Services",
+			"counseling and mental health services": "Counseling and Mental Health Services",
+			"early childhood development and services": "Early Childhood Development and Services",
+			"family and community services": "Family and Community Services",
+			"personal care services": "Personal Care Services"
+		},
+		"11": {
+			"information support and services": "Information Support and Services",
+			"network systems": "Network Systems",
+			"programming and software development": "Programming and Software Development",
+			"web and digital communications": "Web and Digital Communications"
+		},
+		"12": {
+			"correction services": "Correction Services",
+			"emergency and fire management services": "Emergency and Fire Management Services",
+			"law enforcement services": "Law Enforcement Services",
+			"legal services": "Legal Services",
+			"security and protective services": "Security and Protective Services"
+		},
+		"13": {
+			"health safety and environmental assurance": "Health, Safety, and Environmental Assurance",
+			"logistics and inventory control": "Logistics and Inventory Control",
+			"maintenance installation and repair": "Maintenance, Installation and Repair",
+			"manufacturing production process development": "Manufacturing Production Process Development",
+			"production": "Production",
+			"quality assurance": "Quality Assurance"
+		},
+		"14": {
+			"marketing communications": "Marketing Communications",
+			"marketing management": "Marketing Management",
+			"marketing research": "Marketing Research",
+			"merchandising": "Merchandising",
+			"professional sales": "Professional Sales"
+		},
+		"15": {
+			"engineering and technology": "Engineering and Technology",
+			"science and mathematics": "science and mathetics"
+		},
+		"16": {
+			"facility and mobile equipment maintenance": "Facility and Mobile Equipment Maintenance",
+			"health safety and environmental management": "Health, Safety and Environmental Management",
+			"sales and service": "Sales and Service",
+			"transportation operations": "Transportation Operations",
+			"transportation systems infrastructure planning management and regulation": "Transportation Systems/Infrastructure Planning, Management and Regulation"
+		}
+	};	//CTE Career paths for each cluster.
+	
+	var courseSearchAddCourses = [];
+	var programOfStudy = {};
+	
+	var tempSubj;
+	var tempGrade;
+	
+	function updateCareerPathDisplay(cluster) {
+		var newOptions = careerPaths[cluster]; //Get the careerPathways from the careerPaths object based on the cluster supplied.
+		var selectedPathway = $j('#apCareerPathwayValue').val(); //Get the currently selected pathway
+		$j('#apCareerPathwayDisplay').empty(); //Remove the current options
+		if (!cluster) {
+			$j('#apCareerPathwayDisplay').append(
+				$j("<option></option>").attr("value", "").text("Select a cluster...")
+			);
+		} else {
+			$j('#apCareerPathwayDisplay').append(
+				$j("<option></option>").attr("value", "").text("Select a pathway...")
+			);
+		} // Adding null value options back.
+			
+		$j.each(newOptions, function(key, value) {
+			$j('#apCareerPathwayDisplay').append(
+				$j("<option></option>").attr("value", key).text(value)
+			);
+		}); //Add the new options.
+		if (selectedPathway && $j("#apCareerPathwayDisplay option[value='"+selectedPathway+"']").length > 0) {
+			$j('#apCareerPathwayDisplay').val(selectedPathway); //If the current career pathway is in the display list, selected it
+		} else {
+			$j('#apCareerPathwayValue').val(""); //If the current career pathway is not in the select list, remove it from the hidden value field.
+		}
+	}
+	
+	// Updates the value in the hidden career path field.
+	function updateCareerPathValue(path) {
+		$j('#apCareerPathwayValue').val(path);
+		updateCareerPathDisplay
+	};
+	
+	//updates the program of study values when the user changes them.
+	function updateProgramOfStudy(action, subj, grade, courseNumber) {
+		if (action == "insert") {
+			if (!programOfStudy.subject[subj]) programOfStudy.subject[subj] = new Object;
+			if (!programOfStudy.subject[subj].gradeLevel) programOfStudy.subject[subj].gradeLevel = new Object;
+			if (!programOfStudy.subject[subj].gradeLevel[grade]) programOfStudy.subject[subj].gradeLevel[grade] = [];
+			$j.merge(programOfStudy.subject[subj].gradeLevel[grade], courseNumber);
+		}
+		if (action == "delete") {
+			var divId = 'pos_' + subj + '_' + grade + '_Display_' + courseNumber;
+			var jDivId = '#' + divId;
+			$j(jDivId).remove();
+			var courseIndex = programOfStudy.subject[subj].gradeLevel[grade].indexOf(courseNumber);
+			programOfStudy.subject[subj].gradeLevel[grade].splice(courseIndex, 1);
+		}
+		updatePosTextInput();
+	}
+	
+	//updates the display of the program of study. Pass a specific subject and grade for one cell, omit them to update the entire thing.
+	function updateProgramOfStudyDisplay(subj, grade) {
+		if (subj && grade) { //update a specific cell
+			var courseNumbers = programOfStudy.subject[subj].gradeLevel[grade];
+			var divId = '#pos_' + subj + '_' + grade + '_Display_';
+			var displayId = '#pos_' + subj + '_' + grade + '_Display';
+			$j(displayId).empty();
+			$j.each(courseNumbers, function(index, value) {
+				$j.getJSON('academicPlanCourses.json', {
+					courseNumber: value
+				})
+				.done(function(data) {
+					$j(displayId).append(
+						'<div id="' + divId + '_' + data.courseInfo.courseNumber + '">' + 
+							'<a href="#programOfStudy" id="pos_' + subj + '_' + grade + '_' + data.courseInfo.courseNumber + '_Remove">' + data.courseInfo.courseNumber + ' - ' + data.courseInfo.courseName + '</a>' +
+						'</div>'
+					);
+				})
+				.fail(function(jqxhr, textStatus, error) {
+					var err = textStatus + ', ' + error;
+					console.log("Request Failed: " + err);
+				});
+			});
+		} else { //update the entire page
+			$j("div[id^='pos_'][id$='_Display']").each(function() {
+				var jDivId = "#" + this.id;
+				var divId = this.id;
+				var arr = this.id.split("_");
+				var subj = arr[1];
+				var grade = arr[2];
+				if (!programOfStudy.subject[subj]) programOfStudy.subject[subj] = new Object;
+				if (!programOfStudy.subject[subj].gradeLevel) programOfStudy.subject[subj].gradeLevel = new Object;
+				if (!programOfStudy.subject[subj].gradeLevel[grade]) programOfStudy.subject[subj].gradeLevel[grade] = [];
+				if (programOfStudy) {
+					var courseNumbers = [];
+					courseNumbers = programOfStudy.subject[subj].gradeLevel[grade];
+					if (programOfStudy.subject[subj].gradeLevel[grade]) {
+						courseNumbers = programOfStudy.subject[subj].gradeLevel[grade];
+						if (courseNumbers.length > 0) {
+							$j(jDivId).empty();
+							$j.each(courseNumbers, function(index, value) {
+								$j.getJSON('academicPlanCourses.json', {
+									courseNumber: value
+								})
+								.done(function(data) {
+									$j(jDivId).append(
+										'<div id="' + divId + '_' + data.courseInfo.courseNumber + '">' + 
+											'<a href="#programOfStudy" id="pos_' + subj + '_' + grade + '_' + data.courseInfo.courseNumber + '_Remove">' + data.courseInfo.courseNumber + ' - ' + data.courseInfo.courseName + '</a>' +
+										'</div>'
+									);
+								})
+								.fail(function(jqxhr, textStatus, error) {
+									var err = textStatus + ', ' + error;
+									console.log("Request Failed: " + err);
+								});
+							});
+						}
+					}
+				}
+			});
+		}
+	}
+	
+	//loads the program of study object from the text field, creates empty objects if the field is empty.
+	function updateInitialProgramOfStudy() {
+		programOfStudy = $j.parseJSON($j('#apProgramOfStudy').val());
+		if (!programOfStudy) {
+			programOfStudy = new Object; 
+			programOfStudy.subject = new Object;
+		}
+	}
+	
+	//adds links to the modal dialog
+	function addCourseToDialog(courseNumber, courseName) {
+		if ( $j("div[id$=" + courseNumber + "]").length == 0 ) {
+			$j('#pos_Course_Add').append(
+				'<div id="div_add_' + courseNumber + '"><a href="#psDialog" id="a_add_' + courseNumber + '">' + courseNumber + ' - ' + courseName + '</a></div>'
+			);
+		} else {
+			alert(courseName + "already in list");
+		}
+	}
+	
+	//updates the program of study text input.
+	function updatePosTextInput() {
+		$j('#apProgramOfStudy').empty();
+		$j('#apProgramOfStudy').val(JSON.stringify(programOfStudy));
+	}
+			
+	
+	//function removeCourseFromDialog(courseNumber) {
+		
+			
+	//When the CTE Career family code changes, update the pathways select options.
+	$j('#cteCareerFamilyCode').change(function() {
+		updateCareerPathDisplay($j(this).find(":selected").val());
+	});
+	
+	//Update the pathway hidden field when the display field changes.
+	$j('#apCareerPathwayDisplay').change(function() {
+		updateCareerPathValue($j(this).find(":selected").val());
+		var selectedCluster = $j('#cteCareerFamilyCode :selected').val();
+	});
+	
+	$j(document).ready(function() {
+		var selectedCluster = $j('#cteCareerFamilyCode :selected').val();
+		updateCareerPathDisplay(selectedCluster);
+		updateInitialProgramOfStudy();
+		updateProgramOfStudyDisplay();
+	});
+	
+	//Store the subject and grade level when clicking the add button
+	$j("a[id$='AddCourse_Button']").click(function() {
+		var arr = this.id.split("_");
+		tempSubj = arr[1];
+		 tempGrade = arr[2];
+	});
+	
+	//remove courses from the program of study
+	$j(document).on("click", "a[id^='pos_'][id$='_Remove']", function() {
+		var divId = this.id;
+		var jDivId = '#' + divId;
+		var arr = divId.split("_");
+		var subj = arr[1];
+		var grade = arr[2];
+		var courseNumber = arr[3];
+		var areYouSure = confirm("Are you sure you want to remove:\n" + this.text + "?");
+		if(areYouSure) {
+			updateProgramOfStudy("delete", subj, grade, courseNumber);
+			updateProgramOfStudyDisplay(subj, grade);
+		}
+	});
+	
+	//Autocomplete for the course search modal dialog
+	$j(document).on("focus", "input[id^='posCourseSearch']", function() {
+		$j('#posCourseSearch').autocomplete({
+			source: "academicPlancoursesSearch.json",
+			minLength: 2,
+			select: function(event, ui) {
+				addCourseToDialog(ui.item.id, ui.item.value);
+				$j(this).val('');
+				return false;
+			}
+		});
+	});
+	
+	//Add courses link in the modal dialog.
+	$j(document).on("click", "#addCourses", function() {
+		courseNumbers = [];
+		$j("div[id^='div_add_']").each(function() {
+			var arr = this.id.split("_");
+			var courseNumber = arr[2];
+			courseNumbers.push(courseNumber);
+		});
+		updateProgramOfStudy("insert", tempSubj, tempGrade, courseNumbers);
+		updateProgramOfStudyDisplay(tempSubj, tempGrade);
+		$j(this).closest(".ui-dialog-content").dialog("close");
+		tempGrade = null;
+		tempSubj = null;
+	});
+
+</script>
+				
+					
+</html><!-- end right frame -->
