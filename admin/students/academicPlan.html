@@ -662,8 +662,10 @@
 			var divId = 'pos_' + subj + '_' + grade + '_Display_' + courseNumber;
 			var jDivId = '#' + divId;
 			$j(jDivId).remove();
-			var courseIndex = programOfStudy.subject[subj].gradeLevel[grade].indexOf(courseNumber);
-			programOfStudy.subject[subj].gradeLevel[grade].splice(courseIndex, 1);
+			var courseIndex = $j.inArray(courseNumber,programOfStudy.subject[subj].gradeLevel[grade]);
+			if(courseIndex > -1){
+				programOfStudy.subject[subj].gradeLevel[grade].splice(courseIndex, 1);
+			}
 		}
 		updatePosTextInput();
 	}
@@ -789,11 +791,6 @@
 			if (value == 4) $j('#dsBoardOfEducationAdvancedMathematicsAndTechnology').prop('checked', true);
 			if (value == 5) $j('#dsBoardOfEducationSealForExcellenceInCivicsEducation').prop('checked', true);
 		});
-		
-		if (!Array.prototype.indexOf) {
-			alert("Your browser is not supported.\nYou must use a recent version of\nFirefox, Chrome, or Internet Explorer 9+");
-			window.location = "quicklookup.html";
-		}
 	});
 	
 	$j("input[id^='ds']").click(function() {
