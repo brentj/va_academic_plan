@@ -51,6 +51,9 @@ Resolved an issue with IE9 displaying "undefined" instead of the course number a
 	when removing a course from the program of study.
 Reworked the modal dialog display a bit.
 Added the ability to remove courses from the modal dialog by clicking on them.
+Added check for feature Array.prototype.indexOf. If not present, it redirects the user to quicklookup.
+Diploma Seals now working.
+Hid program of study field.
 
 ---------------- 13.04 ----------------
 Initial Release
