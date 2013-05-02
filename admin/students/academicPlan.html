@@ -613,7 +613,7 @@
 	};	//CTE Career paths for each cluster.
 	
 	var courseSearchAddCourses = [];
-	var programOfStudy = {};
+	var programOfStudy = {subject:{}};
 	
 	var tempSubj;
 	var tempGrade;
@@ -653,9 +653,9 @@
 	//updates the program of study values when the user changes them.
 	function updateProgramOfStudy(action, subj, grade, courseNumber) {
 		if (action == "insert") {
-			if (!programOfStudy.subject[subj]) programOfStudy.subject[subj] = new Object;
-			if (!programOfStudy.subject[subj].gradeLevel) programOfStudy.subject[subj].gradeLevel = new Object;
-			if (!programOfStudy.subject[subj].gradeLevel[grade]) programOfStudy.subject[subj].gradeLevel[grade] = [];
+			if (programOfStudy.subject[subj]==undefined) programOfStudy.subject[subj] = new Object;
+			if (programOfStudy.subject[subj].gradeLevel==undefined) programOfStudy.subject[subj].gradeLevel = new Object;
+			if (programOfStudy.subject[subj].gradeLevel[grade]==undefined) programOfStudy.subject[subj].gradeLevel[grade] = [];
 			$j.merge(programOfStudy.subject[subj].gradeLevel[grade], courseNumber);
 		}
 		if (action == "delete") {
@@ -700,9 +700,9 @@
 				var arr = this.id.split("_");
 				var subj = arr[1];
 				var grade = arr[2];
-				if (!programOfStudy.subject[subj]) programOfStudy.subject[subj] = new Object;
-				if (!programOfStudy.subject[subj].gradeLevel) programOfStudy.subject[subj].gradeLevel = new Object;
-				if (!programOfStudy.subject[subj].gradeLevel[grade]) programOfStudy.subject[subj].gradeLevel[grade] = [];
+				if (programOfStudy.subject[subj]==undefined) programOfStudy.subject[subj] = new Object;
+				if (programOfStudy.subject[subj].gradeLevel==undefined) programOfStudy.subject[subj].gradeLevel = new Object;
+				if (programOfStudy.subject[subj].gradeLevel[grade]==undefined) programOfStudy.subject[subj].gradeLevel[grade] = [];
 				if (programOfStudy) {
 					var courseNumbers = [];
 					courseNumbers = programOfStudy.subject[subj].gradeLevel[grade];
@@ -792,7 +792,7 @@
 			if (value == 5) $j('#dsBoardOfEducationSealForExcellenceInCivicsEducation').prop('checked', true);
 		});
 	});
-	
+		
 	$j("input[id^='ds']").click(function() {
 		var diplomaSealCode = "";
 		$j("input[id^='ds']").each(function() {
@@ -824,7 +824,7 @@
 		var subj = arr[1];
 		var grade = arr[2];
 		var courseNumber = arr[3];
-		var courseName = this.textContent; // For IE9
+		var courseName = $j(this).text();
 		var areYouSure = confirm("Are you sure you want to remove:\n" + courseName + "?");
 		if(areYouSure) {
 			updateProgramOfStudy("delete", subj, grade, courseNumber);
